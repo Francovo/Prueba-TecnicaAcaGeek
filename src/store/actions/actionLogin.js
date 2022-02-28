@@ -1,4 +1,4 @@
-import { FacebookAuthProvider, getAuth, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import { FacebookAuthProvider, getAuth, signInWithEmailAndPassword, signInWithPopup} from "firebase/auth";
 import { types } from "../../types/types";
 import {google} from  '../../firebase/firebaseConfig'
 
