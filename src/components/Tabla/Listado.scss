@@ -1,0 +1,33 @@
+
+////////////COOKIES//////////////////////////////////////////////////
+
+
+.Container-Cookie {
+  background-color: #6a32e2;
+  // background-color: #7b49e6;
+
+  color: white;
+  display: flex;
+    justify-content: space-around;
+    padding: 0.5rem;
+
+  flex-direction: column; 
+  @media (min-width: 500px) {
+    flex-direction: row;
+  }
+}
+
+.Container-Individual-Cookie{
+  border-bottom: solid 2px;
+  border-bottom-color: black;
+  border-bottom-color: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(0,0,0,1) 100%);
+    font-weight: 700;
+    padding: 3px 1rem;
+}
+
+
+.container-Data{
+  overflow: auto;
+  max-width: 100vw;
+
+}
