@@ -21,7 +21,7 @@ import {
   Tr,
   useDisclosure,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import useSWR from "swr";
 
@@ -106,7 +106,7 @@ export const GetUser = () => {
 };
 
 function RepoModal({ isOpen, onClose, modalRepo, user }) {
-  const [data, setData] = useState(null);
+  // const [data, setData] = useState(null);
 
   const { data: repo, error: errorRepo } = useSWR(
     modalRepo && user

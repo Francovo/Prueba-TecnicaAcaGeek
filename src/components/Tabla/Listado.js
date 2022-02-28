@@ -20,8 +20,6 @@ import {
   InputLeftElement,
   Tag,
   TagLabel,
-  TagRightIcon,
-  HStack,
   Box,
   Stack,
 } from "@chakra-ui/react";
@@ -97,6 +95,7 @@ const Listado = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // eslint-disable-next-line no-unused-vars
   const [cookies, setcookies] = useCookies([
     "Nombre",
     "Apellidos",

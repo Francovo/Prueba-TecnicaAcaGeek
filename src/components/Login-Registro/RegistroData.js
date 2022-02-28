@@ -34,6 +34,7 @@ const RegistroGit = () => {
 
   const { nombre, apelldos, Cedula, Fecha, Correo, Github } = formValue;
 
+  // eslint-disable-next-line no-unused-vars
   const [cookies, setcookies] = useCookies([
     "Nombre",
     "Apellidos",
