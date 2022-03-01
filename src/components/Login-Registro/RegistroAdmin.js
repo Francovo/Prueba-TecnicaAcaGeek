@@ -70,7 +70,6 @@ const RegistroAdmin = () => {
                   <InputGroup>
                     <InputLeftElement
                       pointerEvents="none"
-                      // children={<CFaUserAlt color="gray.400" />}
                     />
                     <Input
                       placeholder="Usuario"
@@ -85,7 +84,6 @@ const RegistroAdmin = () => {
                     <InputLeftElement
                       pointerEvents="none"
                       color="gray.300"
-                      // children={<CFaLock color="gray.400" />}
                     />
                     <Input
                       placeholder="Email"
@@ -101,7 +99,6 @@ const RegistroAdmin = () => {
                     <InputLeftElement
                       pointerEvents="none"
                       color="gray.300"
-                      // children={<CFaLock color="gray.400" />}
                     />
                     <Input
                       placeholder="Contraseña"

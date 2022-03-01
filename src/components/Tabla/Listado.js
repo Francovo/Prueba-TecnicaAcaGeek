@@ -167,7 +167,6 @@ const Listado = () => {
           />
         </Stack>
         <Table variant="striped" colorScheme="purple">
-          {/* <TableCaption>Imperial to metric conversion factors</TableCaption> */}
           <Thead>
             <Tr maxWidth="100vw">
               <Th>Nombre</Th>
@@ -210,7 +209,6 @@ const Listado = () => {
                               <InputGroup>
                                 <InputLeftElement
                                   pointerEvents="none"
-                                  // children={<CFaUserAlt color="gray.400" />}
                                 />
                                 <Input
                                   id="inputNombre"
@@ -225,7 +223,6 @@ const Listado = () => {
                               <InputGroup>
                                 <InputLeftElement
                                   pointerEvents="none"
-                                  // children={<CFaUserAlt color="gray.400" />}
                                 />
                                 <Input
                                   id="inputApellido"
@@ -241,7 +238,6 @@ const Listado = () => {
                                 <InputLeftElement
                                   pointerEvents="none"
                                   color="gray.300"
-                                  // children={<CFaLock color="gray.400" />}
                                 />
                                 <Input
                                   id="inputCedula"
@@ -257,7 +253,6 @@ const Listado = () => {
                               <InputGroup>
                                 <InputLeftElement
                                   pointerEvents="none"
-                                  // children={<CFaUserAlt color="gray.400" />}
                                 />
                                 <Input
                                   id="inputFecha"
@@ -273,7 +268,6 @@ const Listado = () => {
                                 <InputLeftElement
                                   pointerEvents="none"
                                   color="gray.300"
-                                  // children={<CFaLock color="gray.400" />}
                                 />
                                 <Input
                                   id="inputCorreo"
@@ -290,9 +284,7 @@ const Listado = () => {
                               <InputGroup>
                                 <InputLeftElement
                                   pointerEvents="none"
-                                  // children={
-                                  //   <AiFillGithub color="gray" fontSize={22} />
-                                  // }
+
                                 />
                                 <Input
                                   id="inputGithub"
@@ -345,7 +337,6 @@ const Listado = () => {
                     <Button
                       className="btn btn-danger btn-sm "
                       type="button"
-                      // onClick={() => {GetUser(data.Github)}}
                     >
                       Repositorios
                     </Button>
