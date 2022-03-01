@@ -12,6 +12,7 @@ import {
   ModalHeader,
   ModalOverlay,
   Table,
+  TableCaption,
   Tag,
   Tbody,
   Td,
@@ -46,18 +47,22 @@ export const GetUser = () => {
   //lenguaje, branch por defecto, url git, nombre y descripción.
   return (
     <Box>
-      <Table>
+      <Table variant="striped" colorScheme="purple">
         <Thead>
-          <Tr>
+          <Tr maxWidth="100vw">
             <Th>Nombre</Th>
             <Th>Descripcion</Th>
             <Th>Lenguaje Principal</Th>
-            <Th></Th>
+            <Th>
+              <Link to='/Listado'>
+              <Button bg='purple.700' width='90px' color='white'>Volver</Button>
+              </Link>
+            </Th>
           </Tr>
         </Thead>
         <Tbody>
           {data.map((repo) => (
-            <Tr key={repo.id}>
+            <Tr key={repo.id} maxWidth="100vw">
               <Td>{repo.name}</Td>
               <Td color={repo.description ? "black" : "GrayText"}>
                 {repo.description ? repo.description : "Sin Descripcion"}
@@ -76,24 +81,23 @@ export const GetUser = () => {
             </Tr>
           ))}
         </Tbody>
-        <Button
-        onClick={
-          () => {
-            setPage(page + 1)
-          }
-        }
-        >
-          1
-        </Button>
-        <Button
-        onClick={
-          () => {
-            setPage(page - 1)
-          }
-        }
-        >
-          0
-        </Button>
+
+        <TableCaption>
+          <Button
+            onClick={() => {
+              setPage(page - 1);
+            }}
+          >
+            ◀ Anterior
+          </Button>
+          <Button
+            onClick={() => {
+              setPage(page + 1);
+            }}
+          >
+            Siguiente ▶
+          </Button>
+        </TableCaption>
       </Table>
       <RepoModal
         isOpen={isOpen}

@@ -1,19 +1,25 @@
-import { FacebookAuthProvider, getAuth, signInWithEmailAndPassword, signInWithPopup} from "firebase/auth";
+import { FacebookAuthProvider, getAuth, signInWithEmailAndPassword, signInWithPopup, signOut} from "firebase/auth";
 import { types } from "../../types/types";
 import {google} from  '../../firebase/firebaseConfig'
 
-// export const logoutAsincrono = () => {
-//     return() => {
-//         const auth = getAuth();
-//         signOut(auth)
-//         .then(() => {
-//             console.log("Chao");
-//         })
-//         .catch(error => {
-//             console.log(error);
-//         })
-//     }
-// }
+export const logoutAsincrono = () => {
+    return() => {
+        const auth = getAuth();
+        signOut(auth)
+        .then(() => {
+            console.log("Chao");
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    }
+}
+
+
+export const logoutSincrono = () => ({
+    type: types.logout
+})
+
 
 
 

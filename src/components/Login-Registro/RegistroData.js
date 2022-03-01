@@ -19,7 +19,7 @@ import { BiHappyAlt } from "react-icons/bi";
 import { useDispatch } from "react-redux";
 import { RegistroAsincronoData } from "../../store/actions/actionData";
 
-const RegistroGit = () => {
+const RegistroGit = (logged) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -64,9 +64,6 @@ const RegistroGit = () => {
       Github,
     };
     dispatch(RegistroAsincronoData(data));
-
-
-    navigate("/Listado");
 
     reset();
   };
@@ -207,9 +204,14 @@ const RegistroGit = () => {
                 >
                   Registrar Datos
                 </Button>
-                <Button colorScheme="teal" variant="solid" bg="#322659">
-                  <Link to="/LoginAdmin">Login Admin</Link>
-                </Button>
+
+                {logged ? null : (
+                  <>
+                    <Button colorScheme="teal" variant="solid" bg="#322659">
+                      <Link to="/LoginAdmin">Login Admin</Link>
+                    </Button>
+                  </>
+                )}
               </Stack>
             </form>
           </Box>

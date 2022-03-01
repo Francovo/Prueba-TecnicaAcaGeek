@@ -33,11 +33,13 @@ import {
 } from "../../store/actions/actionData";
 import "./Listado.scss";
 import { useFormik } from "formik";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Fuse from "fuse.js";
+import { logoutAsincrono } from "../../store/actions/actionLogin";
 
-const Listado = () => {
+const Listado = (logged) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   //////////////////MODAL/////////////////////////////////////////////////////////
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -45,11 +47,6 @@ const Listado = () => {
   const { array } = useSelector((store) => store.listar);
   const [search, setSearch] = useState("");
   const [searchOutput, setSearchOutput] = useState([]);
-
-  const dataModal = (id) => {
-    const traer = array.find((traer) => traer.id === id);
-    setDatosModal(traer);
-  };
 
   /////////////BUSQUEDA CON FUSE/////////////////////////////////////////////////////
 
@@ -69,7 +66,12 @@ const Listado = () => {
     }
   }, [array, search]);
 
-  //////////////////////////////////////////////////////////////////
+  /////////////BUSQUEDA CON FUSE/////////////////////////////////////////////////////
+
+  const dataModal = (id) => {
+    const traer = array.find((traer) => traer.id === id);
+    setDatosModal(traer);
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -89,6 +91,13 @@ const Listado = () => {
   useEffect(() => {}, [datosModal]);
 
   //////////////////MODAL/////////////////////////////////////////////////////////
+
+  //////////////////Logout/////////////////////////////////////////////////////////
+  const handleLogout = () => {
+    dispatch(logoutAsincrono());
+    navigate("/RegistroData1");
+  };
+  //////////////////Logout/////////////////////////////////////////////////////////
 
   useEffect(() => {
     dispatch(ListarDataAsincronico());
@@ -110,10 +119,15 @@ const Listado = () => {
         display="flex"
         gap="5"
         flexDirection={{ base: "column", md: "row" }}
-        bg="#7b49e6"
+        bg="#322659"
         padding="2"
         justifyContent="space-around"
       >
+        <Tag bg="black" color="white">
+          <Td>
+            <TagLabel>↢ Ultima Data Ingresada ↣</TagLabel>
+          </Td>
+        </Tag>
         <Tag>
           <Td>
             <TagLabel>{cookies["Nombre"]}</TagLabel>
@@ -143,29 +157,53 @@ const Listado = () => {
         </Tag>
       </Box>
 
+        <div>
+          <Stack
+            spacing={3}
+            justifyContent="center"
+            alignItems="center"
+            padding="0.5rem"
+          >
+            <Box>
+              <Input
+                bg="purple.300"
+                border="solid"
+                borderColor="#6a32e2"
+                placeholder="Buscar Usuario"
+                // style={{
+                //   '&::-'
+                // }}
+                size="md"
+                width={{base: '300px', md:'500px'}}
+                value={search}
+                onChange={(e) => {
+                  setSearch(e.currentTarget.value);
+                }}
+              />
+
+              <Button
+                type="button"
+                onClick={() => handleLogout()}
+                alignItem="right"
+              >
+                Cerrar Sesion
+              </Button>
+            </Box>
+
+            <Link to="/RegistroData">
+              <Button
+                bg="purple.100"
+                // color="White"
+                _hover={{ bg: "#322659", color: "white " }}
+                _active={{ bg: "#000000" }}
+              >
+                ◌◈◌ Registrar Nueva Data ◌◈◌
+              </Button>
+            </Link>
+          </Stack>
+        </div>
+        
       <div className="container-Data">
-        <Stack
-          spacing={3}
-          justifyContent="center"
-          alignItems="center"
-          padding="0.5rem"
-        >
-          <Input
-          bg='purple.300'
-            border='solid'
-            borderColor='#6a32e2'
-            placeholder="Buscar Usuario"
-            // style={{
-            //   '&::-'
-            // }}
-            size="md"
-            width="500px"
-            value={search}
-            onChange={(e) => {
-              setSearch(e.currentTarget.value);
-            }}
-          />
-        </Stack>
         <Table variant="striped" colorScheme="purple">
           <Thead>
             <Tr maxWidth="100vw">
@@ -207,9 +245,7 @@ const Listado = () => {
                           <Stack>
                             <FormControl>
                               <InputGroup>
-                                <InputLeftElement
-                                  pointerEvents="none"
-                                />
+                                <InputLeftElement pointerEvents="none" />
                                 <Input
                                   id="inputNombre"
                                   placeholder="nombre"
@@ -221,9 +257,7 @@ const Listado = () => {
                             </FormControl>
                             <FormControl>
                               <InputGroup>
-                                <InputLeftElement
-                                  pointerEvents="none"
-                                />
+                                <InputLeftElement pointerEvents="none" />
                                 <Input
                                   id="inputApellido"
                                   placeholder="apellidos"
@@ -251,9 +285,7 @@ const Listado = () => {
                             </FormControl>
                             <FormControl>
                               <InputGroup>
-                                <InputLeftElement
-                                  pointerEvents="none"
-                                />
+                                <InputLeftElement pointerEvents="none" />
                                 <Input
                                   id="inputFecha"
                                   placeholder="Fecha de nacimiento dd/mm/aa"
@@ -282,10 +314,7 @@ const Listado = () => {
                             </FormControl>
                             <FormControl>
                               <InputGroup>
-                                <InputLeftElement
-                                  pointerEvents="none"
-
-                                />
+                                <InputLeftElement pointerEvents="none" />
                                 <Input
                                   id="inputGithub"
                                   placeholder="Usuario de Github"
@@ -334,10 +363,7 @@ const Listado = () => {
                 </td>
                 <td>
                   <Link to={`/Detalles/${data.Github}`}>
-                    <Button
-                      className="btn btn-danger btn-sm "
-                      type="button"
-                    >
+                    <Button className="btn btn-danger btn-sm " type="button">
                       Repositorios
                     </Button>
                   </Link>

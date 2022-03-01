@@ -1,49 +1,78 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import React from 'react'
-import Listado from "../components/Tabla/Listado";
+import React, { useEffect, useState } from "react";
 import RegistroData from "../components/Login-Registro/RegistroData";
 import RegistroAdmin from "../components/Login-Registro/RegistroAdmin";
 import LoginAdmin from "../components/Login-Registro/LoginAdmin";
-import { GetUser } from "../components/Tabla/GetData";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import Private from "./Private";
+import { PrivateRoute } from "./PrivateRoute";
+import { PublicRoute } from "./PublicRoute";
 
 const AppRouters = () => {
+  const [checking, setChecking] = useState(true);
+  const [logged, setLogged] = useState(false);
+  // eslint-disable-next-line no-unused-vars
+  const [user, setUser] = useState("");
+
+  useEffect(() => {    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      setUser(user);
+      if (user?.uid) {
+        console.log(user);
+        console.log("Logueado");
+        setLogged(true);
+      } else {
+        console.log("no log");
+        setLogged(false);
+      }
+      setChecking(false);
+    });
+  }, [setLogged, setChecking]);
+  if (checking) {
+    return <h1>Espere...</h1>;
+  }
+
   return (
     <div>
-        <Router>
-            <Routes>
-                <Route 
-                path="/"
-                element={
-                    <RegistroData/>
-                }/>
-                <Route
-                path="/Listado"
-                element={
-                    <Listado/>
-                }
-                />
-                <Route
-                path="/RegistroAdmin"
-                element={
-                    <RegistroAdmin/>
-                }
-                />
-                <Route
-                path="/LoginAdmin"
-                element={
-                    <LoginAdmin/>
-                }
-                />
-                <Route
-                path="/Detalles/:user"
-                element={
-                    <GetUser/>
-                }
-                />
-            </Routes>
-        </Router>
-    </div>
-  )
-}
+      <Router>
+        <Routes>
+          <Route
+            path="/RegistroData1"
+            element={
+              <PublicRoute isAuthenticated={logged}>
+                <RegistroData />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/LoginAdmin"
+            element={
+              <PublicRoute isAuthenticated={logged}>
+                <LoginAdmin />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/RegistroAdmin"
+            element={
+              <PublicRoute isAuthenticated={logged}>
+                <RegistroAdmin />
+              </PublicRoute>
+            }
+          />
 
-export default AppRouters
+          <Route
+            path="/*"
+            element={
+              <PrivateRoute isAuthenticated={logged}>
+                <Private />
+              </PrivateRoute>
+            }
+          />
+        </Routes>
+      </Router>
+    </div>
+  );
+};
+
+export default AppRouters;
