@@ -21,6 +21,7 @@ import { RegistroAsincronoData } from "../../store/actions/actionData";
 
 const RegistroGit = (logged) => {
   const dispatch = useDispatch();
+  // eslint-disable-next-line no-unused-vars
   const navigate = useNavigate();
 
   const [formValue, handleInputChange, reset] = useForm({
