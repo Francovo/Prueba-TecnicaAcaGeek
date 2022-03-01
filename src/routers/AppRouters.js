@@ -37,6 +37,14 @@ const AppRouters = () => {
       <Router>
         <Routes>
           <Route
+            path="/"
+            element={
+              <PublicRoute isAuthenticated={logged}>
+                <RegistroData />
+              </PublicRoute>
+            }
+          />
+          <Route
             path="/RegistroData1"
             element={
               <PublicRoute isAuthenticated={logged}>
