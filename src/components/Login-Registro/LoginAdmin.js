@@ -68,7 +68,7 @@ const LoginAdmin = () => {
         _hover={{ bg: "#000000" }}
         _active={{ bg: "#000000" }}
       >
-        <Link to='/'>
+        <Link to='/RegistroData'>
         Registrar Datos
         </Link>
       </Button>

@@ -71,6 +71,18 @@ const RegistroGit = (logged) => {
 
   return (
     <div>
+      <Button
+        borderRadius={0}
+        type="submit"
+        bg="#805AD5"
+        variant="solid"
+        width="full"
+        color="white"
+        _hover={{ bg: "#000000" }}
+        _active={{ bg: "#000000" }}
+      >
+        <Link to="/LoginAdmin">Login</Link>
+      </Button>
       <Flex
         flexDirection="column"
         width="100wh"

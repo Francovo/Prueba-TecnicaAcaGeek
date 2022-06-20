@@ -14,7 +14,8 @@ const AppRouters = () => {
   // eslint-disable-next-line no-unused-vars
   const [user, setUser] = useState("");
 
-  useEffect(() => {    const auth = getAuth();
+  useEffect(() => {
+    const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
       setUser(user);
       if (user?.uid) {
@@ -40,7 +41,7 @@ const AppRouters = () => {
             path="/"
             element={
               <PublicRoute isAuthenticated={logged}>
-                <RegistroData />
+                <LoginAdmin />
               </PublicRoute>
             }
           />
