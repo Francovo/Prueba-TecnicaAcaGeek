@@ -68,12 +68,11 @@ const RegistroAdmin = () => {
               >
                 <FormControl>
                   <InputGroup>
-                    <InputLeftElement
-                      pointerEvents="none"
-                    />
+                    <InputLeftElement pointerEvents="none" />
                     <Input
                       placeholder="Usuario"
                       name="Usuario"
+                      required
                       value={Usuario}
                       onChange={handleInputChange}
                     />
@@ -81,27 +80,24 @@ const RegistroAdmin = () => {
                 </FormControl>
                 <FormControl>
                   <InputGroup>
-                    <InputLeftElement
-                      pointerEvents="none"
-                      color="gray.300"
-                    />
+                    <InputLeftElement pointerEvents="none" color="gray.300" />
                     <Input
                       placeholder="Email"
                       name="Email"
                       type="email"
                       value={Email}
+                      required
                       onChange={handleInputChange}
                     />
                   </InputGroup>
                 </FormControl>
                 <FormControl>
                   <InputGroup>
-                    <InputLeftElement
-                      pointerEvents="none"
-                      color="gray.300"
-                    />
+                    <InputLeftElement pointerEvents="none" color="gray.300" />
                     <Input
                       placeholder="Contraseña"
+                      minLength={6}
+                      required
                       name="Contraseña"
                       type={showPassword ? "text" : "password"}
                       value={Contraseña}
@@ -125,7 +121,7 @@ const RegistroAdmin = () => {
                 >
                   Registrarme
                 </Button>
-                <Button colorScheme="teal" variant="solid" bg='#805AD5'>
+                <Button colorScheme="teal" variant="solid" bg="#805AD5">
                   <Link to="/LoginAdmin">Ir a Login</Link>
                 </Button>
               </Stack>
